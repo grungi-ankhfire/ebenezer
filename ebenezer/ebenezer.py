@@ -4,6 +4,7 @@
 
 from ui.menu_main import MainMenu
 from ui.menu_acc_list import AccountListMenu
+from ui.menu_acc_trans import AccountTransactionsMenu
 
 class Ebenezer:
 
@@ -14,6 +15,7 @@ class Ebenezer:
         self.menus = {}
         self.menus["mainmenu"] = MainMenu(self)
         self.menus["accountlist"] = AccountListMenu(self, parser.get_accounts())
+        self.menus["accounttrans"] = AccountTransactionsMenu(self, self.active_account)
         self.running = False
         self.current_menu = "mainmenu"
 

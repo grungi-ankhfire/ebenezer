@@ -40,3 +40,6 @@ class Menu:
             return self.answers[ans.lower()][0](self.answers[ans.lower()][1])
         else:
             return self.callback()
+
+    def change_menu(self, new_menu):
+        self.app.current_menu = new_menu
