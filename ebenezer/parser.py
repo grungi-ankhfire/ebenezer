@@ -26,6 +26,20 @@ class EbeParser():
         #    print "Couldn't read file " + filename
 
 
+    def get_num_accounts(self):
+        num = 0
+        for s in self.sections:
+            if s.type == "ACCOUNT":
+                num += 1
+        return num
+    
+    def get_accounts(self):
+        accs = []
+        for s in self.sections:
+            if s.type == "ACCOUNT":
+                accs.append(s)
+        return accs
+
     def scan_for_section(self, lines, lookfor=None):
         count = -1
         for l in lines:

@@ -3,13 +3,15 @@
 # See LICENSE file for licensing details
 
 from ui.menu_main import MainMenu
+from ui.menu_acc_list import AccountListMenu
 
 class Ebenezer:
 
     def __init__(self, parser):
-        self.mainmenu = MainMenu(self)
-        self.running = False
         self.parser = parser
+        self.mainmenu = MainMenu(self)
+        self.accountlist = AccountListMenu(self, parser.get_accounts())
+        self.running = False
         self.current_menu = self.mainmenu
 
 

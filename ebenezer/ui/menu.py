@@ -6,15 +6,20 @@ import os
 
 class Menu:
 
-    def __init__(self):
+    def __init__(self, app):
+        self.app = app
         self.header = []
         self.contents = []
         self.footer = []
         self.prompt = ""
         self.answers = {}
         self.callback = None
+        
+    def update(self):
+        pass
 
     def display(self):
+        self.update()
         os.system("clear")
         for l in self.header:
             print l
