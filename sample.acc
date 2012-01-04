@@ -1,0 +1,43 @@
+# Comments : #
+# Sections : @@ ... @@, ++ .... ++ or {{    }}
+#
+
+@@ EBENEZER
+s version 0.1
+s format 0.1
+@@
+
+{{ ACCOUNT
+s name Main account
+
+++ TRANSACTION
+s name Testing transactions
+i date 20120103
+f amount -100
+s currency €
+++
+
+++ TRANSACTION
+s name Another one
+i date 20120103
+f amount 10
+s currency €
+++
+}}
+{{ ACCOUNT
+s name Second account
+
+++ TRANSACTION
+s name Testing transactions again
+i date 20120103
+f amount -100
+s currency €
+++
+
+++ TRANSACTION
+s name Another other one
+i date 20120103
+f amount 10
+s currency €
+++
+}}
