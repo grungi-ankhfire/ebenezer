@@ -7,7 +7,7 @@ import os
 from parser import EbeParser
 
 def print_menu():
-    #os.system("clear")
+    os.system("clear")
     print "   Ebenezer Personal Accounting System"
     print "-------------[ Main Menu ]---------------"
     print ""
