@@ -14,20 +14,22 @@ class MainMenu(Menu):
         num_acc = self.app.parser.get_num_accounts()
 
         self.contents = ["Found " + str(num_acc) + " accounts",\
+                         "Current active account : " + self.app.active_account.props["name"],\
                          "[L]ist accounts",\
                          "[Q]uit"]
 
         self.prompt = "What do you want to do ?"
 
-        self.answers = {"l":self.list_accounts, "q": self.quit}
+        self.answers = {"l":[self.change_menu, "accountlist"], "q": [self.quit, None]}
 
     def update(self):
         num_acc = self.app.parser.get_num_accounts()
         self.contents[0] = "Found " + str(num_acc) + " accounts"
+        self.contents[1] = "Current active account : " + self.app.active_account.props["name"]
 
-    def list_accounts(self):
-        self.app.current_menu = self.app.accountlist
+    def change_menu(self, data):
+        self.app.current_menu = data
 
-    def quit(self):
+    def quit(self, data = None):
         self.app.running = False
         

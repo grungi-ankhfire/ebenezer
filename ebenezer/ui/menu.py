@@ -37,6 +37,6 @@ class Menu:
         if len(self.answers.keys()) > 0:    
             while ans.lower() not in self.answers.keys():
                 return self.display()
-            return self.answers[ans.lower()]()
+            return self.answers[ans.lower()][0](self.answers[ans.lower()][1])
         else:
             return self.callback()

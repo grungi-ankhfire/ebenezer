@@ -9,15 +9,18 @@ class Ebenezer:
 
     def __init__(self, parser):
         self.parser = parser
-        self.mainmenu = MainMenu(self)
-        self.accountlist = AccountListMenu(self, parser.get_accounts())
+        self.accounts = parser.get_accounts()
+        self.active_account = self.accounts[0]
+        self.menus = {}
+        self.menus["mainmenu"] = MainMenu(self)
+        self.menus["accountlist"] = AccountListMenu(self, parser.get_accounts())
         self.running = False
-        self.current_menu = self.mainmenu
+        self.current_menu = "mainmenu"
 
 
     def run(self):
         self.running = True
         while self.running:
-            self.current_menu.display()
+            self.menus[self.current_menu].display()
 
         return
