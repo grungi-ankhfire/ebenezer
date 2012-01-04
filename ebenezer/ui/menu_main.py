@@ -15,14 +15,14 @@ class MainMenu(Menu):
 
         self.contents = ["Found " + str(num_acc) + " accounts",\
                          "Current active account : " + self.app.active_account.props["name"],\
-                         "[L]ist accounts",\
-                         "[V]iew transactions",\
+                         "[A]ccounts",\
+                         "[T]ransactions",\
                          "[Q]uit"]
 
         self.prompt = "What do you want to do ?"
 
-        self.answers = {"l":[self.change_menu, "accountlist"],\
-                        "v":[self.change_menu, "accounttrans"],\
+        self.answers = {"a":[self.change_menu, "accountlist"],\
+                        "t":[self.change_menu, "accounttrans"],\
                         "q":[self.quit, None]}
 
     def update(self):

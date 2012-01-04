@@ -24,10 +24,15 @@ class AccountListMenu(Menu):
             self.contents.append(string)
             self.answers[str(index)] = [self.set_active, index]
 
-        self.prompt = "[1] to [" + str(index) + "] to set active account, or  [G]o back..."
+            self.footer = ["[1] to [" + str(index) + "] to set active account",\
+                           "[A]dd an account",\
+                           "[G]o back"]
+
+        self.prompt = "What do you want to do ?"
 
 
         self.answers['g'] = [self.change_menu, "mainmenu"]
+        self.answers['a'] = [self.add_account, index+1]
 
 
     def update(self):
@@ -42,9 +47,11 @@ class AccountListMenu(Menu):
 
             string += str(index) + " " + a.props["name"]
             self.contents[index-1] = string
+        self.answers['a'] = [self.add_account, index]
 
     def set_active(self, data):
         self.app.active_account = self.app.accounts[data-1]
 
-    def change_menu(self, data):
-        self.app.current_menu = data
+    def add_account(self, index):
+        pass
+

@@ -6,6 +6,8 @@ from section import EbeSection
 
 class EbeParser():
     def __init__(self, filename):
+
+            self.version = (0,1)
         #try:
             print "Opening file..." + filename
             self.f = open(filename)
@@ -102,10 +104,39 @@ class EbeParser():
                     section.props[prop_name] = buf
                 else:
                     section.props[prop_name] = self.types[tok[0]](tok[2])
-
+                section.props_type[prop_name] = tok[0]
                 print "  Stored property " + prop_name + " with value " + str(section.props[prop_name])
 
         if father is None:
             self.sections.append(section)
         else:
             father.children.append(section)
+
+    def write_section(self, f, s):
+        if s.type == "ACCOUNT":
+            f.write("{{ " + s.type + "\n")
+        else:
+            f.write("++ " + s.type + "\n")
+
+        for p in s.props.keys():
+            f.write(s.props_type[p] + " " + p + " " + str(s.props[p]) + "\n")
+            for c in s.children:
+                self.write_section(f, c)
+
+        if s.type == "ACCOUNT":
+            f.write("}}\n")
+        else:
+            f.write("++\n")        
+
+    def write_file(self, filename):
+        f = open(filename, 'w')
+
+        # Header section
+        f.write("@@ EBENEZER\n")
+        f.write("s version 0.1")
+        f.write("s format " + str(self.version[0]) + "." +str(self.version[1]) + "\n")
+        f.write("@@\n\n")
+
+        for s in self.sections:
+            self.write_section(f, s)
+        f.close()

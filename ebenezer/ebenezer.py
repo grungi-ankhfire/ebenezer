@@ -9,6 +9,8 @@ from ui.menu_acc_trans import AccountTransactionsMenu
 class Ebenezer:
 
     def __init__(self, parser):
+        self.version = (0,1)
+
         self.parser = parser
         self.accounts = parser.get_accounts()
         self.active_account = self.accounts[0]
@@ -25,4 +27,5 @@ class Ebenezer:
         while self.running:
             self.menus[self.current_menu].display()
 
+        self.parser.write_file("output.acc")
         return
