@@ -1,10 +1,14 @@
+# Copyright (c) 2012 Bastien Gorissen
+# Licensed under the MIT license
+# See LICENSE file for licensing details
+
 import sys
 import os
 from parser import EbeParser
 
 def print_menu():
     #os.system("clear")
-    print "Grungi's Vault Personal Accounting System"
+    print "   Ebenezer Personal Accounting System"
     print "-------------[ Main Menu ]---------------"
     print ""
     print "[A]ccess transaction list"
