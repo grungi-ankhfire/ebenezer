@@ -2,9 +2,10 @@
 # Licensed under the MIT license
 # See LICENSE file for licensing details
 from menu import Menu
+from sub_transaction import SubNewTransaction
 
 class AccountTransactionsMenu(Menu):
-    
+
     def __init__(self, app, account):
         Menu.__init__(self, app)
         self.account = account
@@ -13,9 +14,19 @@ class AccountTransactionsMenu(Menu):
                        "-------[ Transactions list ]--------"]
 
         self.update()
-        
-        self.prompt = "[G]o back..."
-        self.answers = {"g":[self.change_menu, "mainmenu"]}
+
+        self.footer = ["[N]ew transaction",\
+                       "[G]o back"]
+
+        self.prompt = "What do you want to do ?"
+        self.answers = {"n":[self.display_prompt, "newtransaction"],\
+                        "g":[self.change_menu, "mainmenu"]}
+
+        self.submenus = {"newtransaction":SubNewTransaction(self.account)}
+
+
+    def display_prompt(self, prompt):
+        self.submenus[prompt].display()
 
     def update(self):
         self.account = self.app.active_account
