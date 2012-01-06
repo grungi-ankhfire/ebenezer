@@ -11,11 +11,11 @@ class SubNewTransaction():
     def __init__(self, account):
         self.account = account
         now = datetime.datetime.today()
-        
+
         self.questions = [["Transaction name ", str, "Various"],\
                           ["Transaction date  ", str, "%0#4i%0#2i%0#2i" % (now.year, now.month, now.day)],\
                           ["Transaction amount ", float, None],\
-                          ["Currency symbol ", str, "€"]]
+                          ["Currency symbol ", str, self.account.props["currency"]]]
 
     def display(self):
         self.answers = []
