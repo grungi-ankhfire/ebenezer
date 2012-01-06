@@ -2,14 +2,18 @@
 # Copyright (c) 2012 Bastien Gorissen
 # Licensed under the MIT license
 # See LICENSE file for licensing details
+import datetime
+
 from ..section import EbeSection
 
 class SubNewTransaction():
 
     def __init__(self, account):
         self.account = account
+        now = datetime.datetime.today()
+        
         self.questions = [["Transaction name ", str, "Various"],\
-                          ["Transaction date  ", int, 2012],\
+                          ["Transaction date  ", str, "%0#4i%0#2i%0#2i" % (now.year, now.month, now.day)],\
                           ["Transaction amount ", float, None],\
                           ["Currency symbol ", str, "€"]]
 
