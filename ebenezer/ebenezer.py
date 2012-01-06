@@ -36,5 +36,11 @@ class Ebenezer:
             self.menus[self.current_menu].display()
         
         self.parser.replace_accounts(self.accounts)
+
+        if self.parser.filename is None:
+            filename = raw_input("Save in which file ? [filename] to save or [Enter] to drop changes : ")
+            if filename != "":
+                self.parser.filename = filename
+            
         self.parser.write_file(self.parser.filename)
         return

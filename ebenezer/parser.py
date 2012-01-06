@@ -10,6 +10,7 @@ class EbeParser():
         self.version = (0,1)
         self.sections = []
         self.filename = filename
+        self.successfull = False
         self.delimiters = ["@@", "++", "{{"]
         self.types = {"i":int, "s":str, "f":float}
 
@@ -25,6 +26,7 @@ class EbeParser():
             self.scan_for_section(contents, lookfor="EBENEZER")
             if len(self.sections) > 0:
                 print "Found a valid file !"
+                self.successful = True
                 self.scan_for_section(contents, lookfor="ACCOUNT")
                 print "Found " + str(len(self.sections) - 1) + " accounts."
             self.f.close()
@@ -143,6 +145,8 @@ class EbeParser():
             self.sections.append(a)
 
     def write_file(self, filename):
+        if filename is None:
+            return
         f = open(filename, 'w')
 
         # Header section

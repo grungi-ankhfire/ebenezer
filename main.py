@@ -14,7 +14,9 @@ def main(argv=None):
     if len(argv) > 1:
         for a in argv[1:]:
             parser = EbeParser(a)
-            parser.write_file(parser.filename+".backup")
+            if parser.successfull:
+                parser.write_file(parser.filename+".backup")
+                break
     else:
         parser = EbeParser(None)
 
