@@ -9,6 +9,7 @@ class EbeParser():
 
         self.version = (0,1)
         self.sections = []
+        self.filename = filename
         self.delimiters = ["@@", "++", "{{"]
         self.types = {"i":int, "s":str, "f":float}
 

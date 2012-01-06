@@ -36,5 +36,5 @@ class Ebenezer:
             self.menus[self.current_menu].display()
         
         self.parser.replace_accounts(self.accounts)
-        self.parser.write_file("output.acc")
+        self.parser.write_file(self.parser.filename)
         return
