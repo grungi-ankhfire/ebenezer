@@ -1,6 +1,16 @@
-Ebenezer
+Ebenezer v0.1 (Early, early alpha)
 
 Commandline personal accounting tool
+
+Use with python main.py [filename]
+
+Currently, all output is savec in output.acc, so if you want persistent changes, use :
+
+python main.py output.acc
+
+Better file support (and in-application loading/saving is of course planned).
+
+See the wiki on github for more information about development : https://github.com/grungi-ankhfire/Ebenezer/wiki
 
 Copyright (c) 2012 Bastien Gorissen
 Licensed under the MIT license
