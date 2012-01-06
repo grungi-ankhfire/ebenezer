@@ -121,23 +121,36 @@ class EbeParser():
 
         for p in s.props.keys():
             f.write(s.props_type[p] + " " + p + " " + str(s.props[p]) + "\n")
-            for c in s.children:
-                self.write_section(f, c)
+
+        for c in s.children:
+            self.write_section(f, c)
 
         if s.type == "ACCOUNT":
             f.write("}}\n")
         else:
             f.write("++\n")        
 
+    def replace_accounts(self, new_accs):
+        to_del = []
+        for s in self.sections:
+            if s.type == "ACCOUNT":
+                to_del.append(s)
+
+        for s in to_del:
+            self.sections.remove(s)
+        for a in new_accs:
+            self.sections.append(a)
+
     def write_file(self, filename):
         f = open(filename, 'w')
 
         # Header section
         f.write("@@ EBENEZER\n")
-        f.write("s version 0.1")
+        f.write("s version 0.1\n")
         f.write("s format " + str(self.version[0]) + "." +str(self.version[1]) + "\n")
         f.write("@@\n\n")
 
         for s in self.sections:
-            self.write_section(f, s)
+            if s.type != "EBENEZER":
+                self.write_section(f, s)
         f.close()

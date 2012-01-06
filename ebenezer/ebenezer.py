@@ -19,7 +19,7 @@ class Ebenezer:
             self.active_account = self.accounts[0]
         self.menus = {}
         self.menus["mainmenu"] = MainMenu(self)
-        self.menus["accountlist"] = AccountListMenu(self, parser.get_accounts())
+        self.menus["accountlist"] = AccountListMenu(self, self.accounts)
         self.menus["accounttrans"] = AccountTransactionsMenu(self, self.active_account)
         self.running = False
         self.current_menu = "mainmenu"
@@ -28,7 +28,13 @@ class Ebenezer:
     def run(self):
         self.running = True
         while self.running:
+            if self.active_account not in self.accounts:
+                if len(self.accounts) == 0:
+                    self.active_account = None
+                else:
+                    self.active_account = self.accounts[0]
             self.menus[self.current_menu].display()
-
+        
+        self.parser.replace_accounts(self.accounts)
         self.parser.write_file("output.acc")
         return

@@ -34,16 +34,16 @@ class AccountTransactionsMenu(Menu):
 
     def update(self):
         self.account = self.app.active_account
+        self.transactions = []
+        self.contents = []
 
         if self.account is None:
             return
-        self.transactions = []
         for c in self.account.children:
             if c.type == "TRANSACTION":
                 self.transactions.append(c)
 
         index = 0
-        self.contents = []
         for t in self.transactions:
             index += 1
             string = "%0i %+#15.2f%s   %-#8s   %s" % \

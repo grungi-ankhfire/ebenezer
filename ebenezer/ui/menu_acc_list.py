@@ -2,6 +2,8 @@
 # Licensed under the MIT license
 # See LICENSE file for licensing details
 from menu import Menu
+from sub_account import SubNewAccount
+from sub_del_account import SubDelAccount
 
 class AccountListMenu(Menu):
 
@@ -28,18 +30,26 @@ class AccountListMenu(Menu):
         if len(accounts) > 1:
             self.footer.append("[1] to [" + str(index) + "] to set active account")
             
-        self.footer.append("[A]dd an account")
+        self.footer.append("[N]ew account")
+        self.footer.append("[D]elete an account")
         self.footer.append("[G]o back")
 
         self.prompt = "What do you want to do ?"
 
 
         self.answers['g'] = [self.change_menu, "mainmenu"]
-        self.answers['a'] = [self.add_account, index+1]
+        self.answers['n'] = [self.display_prompt, "newaccount"]
+        self.answers['d'] = [self.display_prompt, "delaccount"]
 
+        self.submenus = {"newaccount":SubNewAccount(self.app.accounts),\
+                         "delaccount":SubDelAccount(self.app.accounts)}
+
+    def display_prompt(self, prompt):
+        self.submenus[prompt].display()
 
     def update(self):
         index = 0
+        self.contents = []
         for a in self.app.accounts:
             index += 1
             string = ""
@@ -49,12 +59,11 @@ class AccountListMenu(Menu):
                 string += "  "
 
             string += str(index) + " " + a.props["name"]
-            self.contents[index-1] = string
-        self.answers['a'] = [self.add_account, index]
+            self.contents.append(string)
+            self.answers[str(index)] = [self.set_active, index]
+
 
     def set_active(self, data):
         self.app.active_account = self.app.accounts[data-1]
 
-    def add_account(self, index):
-        pass
 
