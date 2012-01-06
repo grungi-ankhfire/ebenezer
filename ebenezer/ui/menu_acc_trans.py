@@ -3,6 +3,7 @@
 # See LICENSE file for licensing details
 from menu import Menu
 from sub_transaction import SubNewTransaction
+from sub_del_transaction import SubDelTransaction
 
 class AccountTransactionsMenu(Menu):
 
@@ -16,13 +17,16 @@ class AccountTransactionsMenu(Menu):
         self.update()
 
         self.footer = ["[N]ew transaction",\
+                       "[D]elete transaction",\
                        "[G]o back"]
 
         self.prompt = "What do you want to do ?"
         self.answers = {"n":[self.display_prompt, "newtransaction"],\
+                        "d":[self.display_prompt, "deltransaction"],\
                         "g":[self.change_menu, "mainmenu"]}
 
-        self.submenus = {"newtransaction":SubNewTransaction(self.account)}
+        self.submenus = {"newtransaction":SubNewTransaction(self.account),\
+                         "deltransaction":SubDelTransaction(self.account)}
 
 
     def display_prompt(self, prompt):
