@@ -13,7 +13,10 @@ class Ebenezer:
 
         self.parser = parser
         self.accounts = parser.get_accounts()
-        self.active_account = self.accounts[0]
+        if len(self.accounts) == 0:
+            self.active_account = None
+        else:
+            self.active_account = self.accounts[0]
         self.menus = {}
         self.menus["mainmenu"] = MainMenu(self)
         self.menus["accountlist"] = AccountListMenu(self, parser.get_accounts())

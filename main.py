@@ -14,6 +14,8 @@ def main(argv=None):
     if len(argv) > 1:
         for a in argv[1:]:
             parser = EbeParser(a)
+    else:
+        parser = EbeParser(None)
 
     app = Ebenezer(parser)
     return app.run()

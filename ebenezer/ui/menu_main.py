@@ -12,9 +12,13 @@ class MainMenu(Menu):
                        "-----------[ Main menu ]------------"]
 
         num_acc = self.app.parser.get_num_accounts()
+        if self.app.active_account is None:
+            active_account_name = "No account found!"
+        else:
+            active_account_name = self.app.active_account.props["name"]
 
         self.contents = ["Found " + str(num_acc) + " accounts",\
-                         "Current active account : " + self.app.active_account.props["name"],\
+                         "Current active account : " + active_account_name,\
                          "[A]ccounts",\
                          "[T]ransactions",\
                          "[Q]uit"]
@@ -27,8 +31,12 @@ class MainMenu(Menu):
 
     def update(self):
         num_acc = self.app.parser.get_num_accounts()
+        if self.app.active_account is None:
+            active_account_name = "No account found!"
+        else:
+            active_account_name = self.app.active_account.props["name"]
         self.contents[0] = "Found " + str(num_acc) + " accounts"
-        self.contents[1] = "Current active account : " + self.app.active_account.props["name"]
+        self.contents[1] = "Current active account : " + active_account_name
 
     def quit(self, data = None):
         self.app.running = False

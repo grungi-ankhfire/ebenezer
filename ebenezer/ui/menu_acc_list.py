@@ -12,6 +12,7 @@ class AccountListMenu(Menu):
 
         self.contents = []
         index = 0
+        self.footer = []
         for a in accounts:
             index += 1
             string = ""
@@ -24,9 +25,11 @@ class AccountListMenu(Menu):
             self.contents.append(string)
             self.answers[str(index)] = [self.set_active, index]
 
-            self.footer = ["[1] to [" + str(index) + "] to set active account",\
-                           "[A]dd an account",\
-                           "[G]o back"]
+        if len(accounts) > 1:
+            self.footer.append("[1] to [" + str(index) + "] to set active account")
+            
+        self.footer.append("[A]dd an account")
+        self.footer.append("[G]o back")
 
         self.prompt = "What do you want to do ?"
 

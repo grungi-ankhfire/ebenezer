@@ -7,26 +7,27 @@ from section import EbeSection
 class EbeParser():
     def __init__(self, filename):
 
-            self.version = (0,1)
-        #try:
+        self.version = (0,1)
+        self.sections = []
+        self.delimiters = ["@@", "++", "{{"]
+        self.types = {"i":int, "s":str, "f":float}
+
+        if filename is not None:
             print "Opening file..." + filename
+        try:
             self.f = open(filename)
-            self.sections = []
-
-            self.delimiters = ["@@", "++", "{{"]
-            self.types = {"i":int, "s":str, "f":float}
-            
+        except:
+            print "[ERROR] Couldn't open file " + str(filename)
+            filename = None
+        if filename is not None:
             contents = self.f.readlines()
-
             self.scan_for_section(contents, lookfor="EBENEZER")
             if len(self.sections) > 0:
                 print "Found a valid file !"
                 self.scan_for_section(contents, lookfor="ACCOUNT")
                 print "Found " + str(len(self.sections) - 1) + " accounts."
-
-        #except:
-        #    print "Couldn't read file " + filename
-
+            self.f.close()
+            
 
     def get_num_accounts(self):
         num = 0

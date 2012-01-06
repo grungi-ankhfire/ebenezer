@@ -31,6 +31,8 @@ class AccountTransactionsMenu(Menu):
     def update(self):
         self.account = self.app.active_account
 
+        if self.account is None:
+            return
         self.transactions = []
         for c in self.account.children:
             if c.type == "TRANSACTION":
