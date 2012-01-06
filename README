@@ -4,9 +4,7 @@ Commandline personal accounting tool
 
 Use with python main.py [filename]
 
-Currently, all output is savec in output.acc, so if you want persistent changes, use :
-
-python main.py output.acc
+Currently, all output is savec in the initially loaded file, which is backupped as filename.backup at the start of the application. If no file is given when launching the application, the user will be asked for a filename when exiting the program.
 
 Better file support (and in-application loading/saving is of course planned).
 
