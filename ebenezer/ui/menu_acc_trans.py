@@ -44,11 +44,15 @@ class AccountTransactionsMenu(Menu):
                 self.transactions.append(c)
 
         index = 0
+        balance = self.account.props['balance']
         for t in self.transactions:
             index += 1
             string = "%0i %+#15.2f%s   %-#8s   %s" % \
                      (index, t.props["amount"], t.props["currency"], t.props["date"], t.props["name"])
 
 
+            balance += t.props["amount"]
             self.contents.append(string)
             #self.contents.append(str(index) + "  " + str(t.props["amount"])  + t.props["currency"] + " " + str(t.props["date"]) + " " + t.props['name'])
+        self.contents.append("-----------------------------------------")
+        self.contents.append("Account balance : %+#15.2f%s" % (balance, self.account.props["currency"]))
