@@ -40,7 +40,7 @@ class AccountTransactionsMenu(Menu):
         self.contents = []
         for t in self.transactions:
             index += 1
-            string = "%0i %+#15.2f%s   %s   %s" % \
+            string = "%0i %+#15.2f%s   %-#8s   %s" % \
                      (index, t.props["amount"], t.props["currency"], t.props["date"], t.props["name"])
 
 
