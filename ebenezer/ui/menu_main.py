@@ -21,12 +21,14 @@ class MainMenu(Menu):
                          "Current active account : " + active_account_name,\
                          "[A]ccounts",\
                          "[T]ransactions",\
+                         "[D]ebts",\
                          "[Q]uit"]
 
         self.prompt = "What do you want to do ?"
 
         self.answers = {"a":[self.change_menu, "accountlist"],\
                         "t":[self.change_menu, "accounttrans"],\
+                        "d":[self.change_menu, "debts"],\
                         "q":[self.quit, None]}
 
     def update(self):

@@ -19,6 +19,7 @@ class SubNewTransaction():
         self.questions = [["Transaction name ", str, "Various"],\
                           ["Transaction date  ", str, "%0#4i%0#2i%0#2i" % (now.year, now.month, now.day)],\
                           ["Transaction amount ", float, None],\
+                          ["Person concerned ", str, "you"],\
                           ["Currency symbol ", str, currency]]
 
     def display(self):
@@ -45,7 +46,11 @@ class SubNewTransaction():
         sec.props["name"] = self.answers[0]
         sec.props["date"] = self.answers[1]
         sec.props["amount"] = self.answers[2]
-        sec.props["currency"] = self.answers[3]
+        if self.answers[3] != "" and self.answers[3] != "you":
+            sec.props["person"] = self.answers[3]
+            sec.props_type["person"] = "s"
+
+        sec.props["currency"] = self.answers[4]
         sec.props_type["name"] = "s"
         sec.props_type["date"] = "i"
         sec.props_type["amount"] = "f"

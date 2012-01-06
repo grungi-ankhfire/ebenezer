@@ -5,6 +5,7 @@
 from ui.menu_main import MainMenu
 from ui.menu_acc_list import AccountListMenu
 from ui.menu_acc_trans import AccountTransactionsMenu
+from ui.menu_debts import DebtsListMenu
 
 class Ebenezer:
 
@@ -21,6 +22,7 @@ class Ebenezer:
         self.menus["mainmenu"] = MainMenu(self)
         self.menus["accountlist"] = AccountListMenu(self, self.accounts)
         self.menus["accounttrans"] = AccountTransactionsMenu(self, self.active_account)
+        self.menus["debts"] = DebtsListMenu(self, self.active_account)
         self.running = False
         self.current_menu = "mainmenu"
 
