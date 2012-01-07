@@ -3,7 +3,7 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>grungi-ankhfire/Ebenezer @ GitHub</title>
+  <title>Ebenezer - A command line personal accounting tool</title>
 
   <style type="text/css">
     body {
@@ -11,13 +11,14 @@
       background-color: #ffffff;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
+      text-align:justify;
     }
     #container {
       margin: 0 auto;
       width: 700px;
     }
     h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
+    .version { font-size: 0.8em; font-style: bold;}
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #000000; }
     h3 { text-align: center; color: #000000; }
@@ -31,7 +32,7 @@
 </head>
 
 <body>
-  <a href="https://github.com/grungi-ankhfire/Ebenezer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <a href="https://github.com/grungi-ankhfire/ebenezer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
 
@@ -42,37 +43,40 @@
         <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="https://github.com/grungi-ankhfire/Ebenezer">Ebenezer</a>
-      <span class="small">by <a href="https://github.com/grungi-ankhfire">grungi-ankhfire</a></span></h1>
+    <h1><a href="https://github.com/grungi-ankhfire/Ebenezer">Ebenezer</a></h1>
+    <div  class="version"> v0.1 "Tiny Tim"</div>
 
     <div class="description">
-      Personal finances
+      A command line personal accounting tool written in Python.
     </div>
 
-    
 
-    
-
-    
+      <h2>Why another accounting tool ?</h2>
+      <p>Ebenezer spawned from a recurring problem of mine : I'm bad at keeping track of my money. I get by, but I could do much more saving if I was a little more consistent with my accounting. So I've been around, and I tried a bunch of system. On paper, with a spreadsheet, with dedicated software, and nothing really cut it. So I decided to set out and create my own tool. The driving principle behind it is that I want it as simple as possible, but still with a couple of specialised features. It is currently only command-line, because I find it faster than mouse-heavy interfaces, and because I plan on making it on a client-server model. I've also been really impressed by some Android applications that let you keep track of payments withing groups of people, so I want to include that too. Eventually, I plan on having a very versatile backend that you will be able to manipulate via a variety of interfaces which can hide most of the complexity.</p>
 
     
       <h2>License</h2>
-      <p>MIT</p>
+      <p>Ebenezer is free software licensed under the MIT license.</p>
     
-
-    
+   
       <h2>Authors</h2>
-      <p>Bastien Gorissen (bastien.gorissen@cenaero.be)<br/>      </p>
+      <p>Bastien Gorissen (kadomony@gmail.com)
+<br/>      </p>
     
+      <h2>Current status</h2>
+      <p>The current development status will be documented on the <a hfref=https://github.com/grungi-ankhfire/Ebenezer/wiki>wiki</a>.
+      <br/>
+         The current version is the first public release of Ebenezer, codenamed "Tiny Tim" (of if you prefer versions number : 0.1). It can do a few simple things, such as storing transactions on any number of accounts, and associate transactions to a person other than you. Ie. if I associate an outbound transaction, say -100€, to my friend "Tim", it will mean that Tim owes me 100€, and that will be reported in the application.
 
-    
-      <h2>Contact</h2>
-      <p>Bastien Gorissen (kadomony@gmail.com)<br/>      </p>
-    
 
     <h2>Download</h2>
+    <p>The latest release, "Tiny Tim", can be downloaded in either
+      <a href="https://github.com/grungi-ankhfire/ebenezer/zipball/v0.1">zip</a> or
+      <a href="https://github.com/grungi-ankhfire/ebenezer/tarball/v0.1">tar formats.
+    </p>
+    <br/>
     <p>
-      You can download this project in either
+      You can also download the current sources for this project in either
       <a href="https://github.com/grungi-ankhfire/Ebenezer/zipball/master">zip</a> or
       <a href="https://github.com/grungi-ankhfire/Ebenezer/tarball/master">tar formats.
     </p>
