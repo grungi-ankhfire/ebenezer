@@ -20,7 +20,9 @@ class SubNewTransaction():
                           ["Transaction date  ", str, "%0#4i%0#2i%0#2i" % (now.year, now.month, now.day)],\
                           ["Transaction amount ", float, None],\
                           ["Person concerned ", str, "you"],\
-                          ["Currency symbol ", str, currency]]
+                          ["Currency symbol ", str, currency],\
+                          ["Category ", str, "General"]]
+
 
     def display(self):
         self.answers = []
@@ -51,9 +53,11 @@ class SubNewTransaction():
             sec.props_type["person"] = "s"
 
         sec.props["currency"] = self.answers[4]
+        sec.props["category"] = self.answers[5]
         sec.props_type["name"] = "s"
         sec.props_type["date"] = "i"
         sec.props_type["amount"] = "f"
         sec.props_type["currency"] = "s"
+        sec.props_type["category"] = "s"
 
         self.account.children.append(sec)

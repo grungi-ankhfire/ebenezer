@@ -45,10 +45,10 @@ class AccountTransactionsMenu(Menu):
 
         index = 0
         balance = self.account.props['balance']
-        for t in self.transactions:
+        for t in sorted(self.transactions, key=lambda transaction: transaction.props["date"]):
             index += 1
-            string = "%0i %+#15.2f%s   %-#8s   %s" % \
-                     (index, t.props["amount"], t.props["currency"], t.props["date"], t.props["name"])
+            string = "%0i %+#15.2f%s   %-#8s   %-#30s %s" % \
+                     (index, t.props["amount"], t.props["currency"], t.props["date"], t.props["name"], t.props["category"])
 
 
             balance += t.props["amount"]
