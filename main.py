@@ -23,8 +23,13 @@ def parse_options(argv):
                 print "Ebenezer version " + getVersionString()
                 sys.exit(0)
 
+    return remainder
+
+
+def processFile(files):
     parser = None
-    for item in remainder:
+    for item in files:
+        load(item)
         parser = EbeParser(item)
         if parser.successful:
             parser.write_file(parser.filename+".backup")
@@ -37,9 +42,13 @@ def parse_options(argv):
 #------------------------------------------------------------------------------
 def main(argv=None):
 
-    parser = parse_options(argv)
+    files = parse_options(argv)
 
     log_init()
+
+    log("Testing log", component="Main")
+
+    parser = processFile(files)
 
     app = Ebenezer(parser)
     return app.run()
