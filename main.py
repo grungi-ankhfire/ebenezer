@@ -11,27 +11,37 @@ from ebenezer.ebenezer import Ebenezer
 from ebenezer.io import *
 from ebenezer.log import *
 
-def main(argv=None):
+def parse_options(argv):
     if argv is None:
-        argv = sys.argv
+            argv = sys.argv
+
+    options, remainder = getopt.getopt(argv[1:], '', ['version'])
+
+    for opt, arg in options:
+            if opt in ('--version'):
+                print "Ebenezer version 0.1"
+                sys.exit(0)
+
+    parser = None
+    for item in remainder:
+        parser = EbeParser(item)
+        if parser.successful:
+            parser.write_file(parser.filename+".backup")
+            break
+    if parser is None or not parser.successful:
+        parser = EbeParser(None)
+
+    return parser
+
+#------------------------------------------------------------------------------
+def main(argv=None):
+
+    parser = parse_options(argv)
 
     log_init()
 
-    if len(argv) > 1:
-
-        load(argv[1])
-        log("Loaded file", component="Main")
-        for a in argv[1:]:
-            parser = EbeParser(a)
-            if parser.successfull:
-                parser.write_file(parser.filename+".backup")
-                break
-    else:
-        parser = EbeParser(None)
-
     app = Ebenezer(parser)
     return app.run()
-
 
 if __name__ == "__main__":
     sys.exit(main())

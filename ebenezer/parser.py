@@ -10,7 +10,7 @@ class EbeParser():
         self.version = (0,1)
         self.sections = []
         self.filename = filename
-        self.successfull = False
+        self.successful = False
         self.delimiters = ["@@", "++", "{{"]
         self.types = {"i":int, "s":str, "f":float}
 
@@ -30,7 +30,6 @@ class EbeParser():
                 self.scan_for_section(contents, lookfor="ACCOUNT")
                 print "Found " + str(len(self.sections) - 1) + " accounts."
             self.f.close()
-            
 
     def get_num_accounts(self):
         num = 0

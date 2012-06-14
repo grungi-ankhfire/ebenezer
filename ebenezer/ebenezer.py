@@ -44,5 +44,5 @@ class Ebenezer:
             if filename != "":
                 self.parser.filename = filename
             
-        self.parser.write_file(self.parser.filename)
+        #self.parser.write_file(self.parser.filename)
         return
