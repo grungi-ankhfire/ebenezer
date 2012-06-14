@@ -6,6 +6,7 @@ import sys
 import os
 import getopt
 
+from ebenezer.config import *
 from ebenezer.parser import EbeParser
 from ebenezer.ebenezer import Ebenezer
 from ebenezer.io import *
@@ -19,7 +20,7 @@ def parse_options(argv):
 
     for opt, arg in options:
             if opt in ('--version'):
-                print "Ebenezer version 0.1"
+                print "Ebenezer version " + getVersionString()
                 sys.exit(0)
 
     parser = None
