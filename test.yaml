@@ -22,10 +22,7 @@ transactions:
   amount: -100.0
   category: Ebenezer testing
   currency: "\u20AC"
-  date:
-  - 2012
-  - 1
-  - 3
+  date: '20120103'
   description: Simply testing transactions
   from_account: 1
   person: null
