@@ -64,21 +64,4 @@ class SubNewTransaction():
 
         log("Adding transaction with from_account id " + str(self.account.id), component="SubNewTransaction")
         data.transactions.append(new_transaction)
-        # sec = EbeSection()
-        # sec.type = "TRANSACTION"
-        # sec.props["name"] = self.answers[0]
-        # sec.props["date"] = self.answers[1]
-        # sec.props["amount"] = self.answers[2]
-        # if self.answers[3] != "" and self.answers[3] != "you":
-        #     sec.props["person"] = self.answers[3]
-        #     sec.props_type["person"] = "s"
 
-        # sec.props["currency"] = self.answers[4]
-        # sec.props["category"] = self.answers[5]
-        # sec.props_type["name"] = "s"
-        # sec.props_type["date"] = "i"
-        # sec.props_type["amount"] = "f"
-        # sec.props_type["currency"] = "s"
-        # sec.props_type["category"] = "s"
-
-        # self.account.children.append(sec)
