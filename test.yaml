@@ -7,12 +7,10 @@ accounts:
         name: Main account
         currency: €
         initial_balance: 1000.0
-        id: 001
     - &acc002 !Account
         name: Another account
         currency: €
         initial_balance: 0.0
-        id: 002
 transactions:
     - !Transaction
         date: [2012, 1, 3]

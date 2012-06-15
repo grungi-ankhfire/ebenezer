@@ -4,6 +4,8 @@
 # See LICENSE file for licensing details
 
 from ..section import EbeSection
+from .. import data
+from ..data import Account
 
 class SubNewAccount():
 
@@ -32,14 +34,9 @@ class SubNewAccount():
                    ans = raw_input(string)
 
             self.answers.append(ans)
-        
-        sec = EbeSection()
-        sec.type = "ACCOUNT"
-        sec.props["name"] = self.answers[0]
-        sec.props["balance"] = self.answers[1]
-        sec.props["currency"] = self.answers[2]
-        sec.props_type["name"] = "s"
-        sec.props_type["balance"] = "f"
-        sec.props_type["currency"] = "s"
 
-        self.accounts.append(sec)
+        new_account = Account(name=self.answers[0],
+                              initial_balance=self.answers[1],
+                              currency=self.answers[2])
+
+        data.accounts.append(new_account)
