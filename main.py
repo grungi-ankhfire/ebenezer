@@ -31,6 +31,7 @@ def processFile(files):
     for item in files:
         load(item)
         save(item + ".backup")
+        data.active_file = item
     # TODO Add success checks in io, and error handling
 
 

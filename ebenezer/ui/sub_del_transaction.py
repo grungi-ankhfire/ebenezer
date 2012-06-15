@@ -2,12 +2,14 @@
 # Copyright (c) 2012 Bastien Gorissen
 # Licensed under the MIT license
 # See LICENSE file for licensing details
-from ..section import EbeSection
+
+from .. import data
+
 
 class SubDelTransaction():
 
-    def __init__(self, account):
-        self.account = account
+    def __init__(self, menu):
+        self.menu = menu
         self.questions = [["Transaction number ", int, None]]
 
     def display(self):
@@ -30,6 +32,9 @@ class SubDelTransaction():
             self.answers.append(ans)
         
         num = self.answers[0]-1
-        if num >= 0 and num < len(self.account.children):
-            self.account.children.remove(self.account.children[num])
+
+        eligible_transactions = self.menu.transactions
+
+        if num >= 0 and num < len(eligible_transactions):
+            data.transactions.remove(eligible_transactions[num])
 

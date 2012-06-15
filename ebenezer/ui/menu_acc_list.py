@@ -6,6 +6,7 @@ from sub_account import SubNewAccount
 from sub_del_account import SubDelAccount
 
 from .. import data
+from ..log import *
 
 class AccountListMenu(Menu):
 
@@ -67,5 +68,6 @@ class AccountListMenu(Menu):
 
     def set_active(self, index):
         self.app.active_account = data.accounts[index-1]
+        log("Setting active account to id " + str(self.app.active_account.id), component="AccountListMenu")
 
 

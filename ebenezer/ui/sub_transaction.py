@@ -4,16 +4,19 @@
 # See LICENSE file for licensing details
 import datetime
 
-from ..section import EbeSection
+from ..data import Transaction
+from .. import data
+from ..log import *
 
 class SubNewTransaction():
 
-    def __init__(self, account):
-        self.account = account
+    def __init__(self, app):
+        self.app = app
+        self.account = app.active_account
         now = datetime.datetime.today()
         currency = "€"
         if self.account is not None:
-            currency = self.account.props["currency"]
+            currency = "€" #self.account.currency
 
 
         self.questions = [["Transaction name ", str, "Various"],\
@@ -25,6 +28,7 @@ class SubNewTransaction():
 
 
     def display(self):
+        self.account = self.app.active_account
         self.answers = []
         for q in self.questions:
             string = q[0]
@@ -43,21 +47,32 @@ class SubNewTransaction():
 
             self.answers.append(ans)
 
-        sec = EbeSection()
-        sec.type = "TRANSACTION"
-        sec.props["name"] = self.answers[0]
-        sec.props["date"] = self.answers[1]
-        sec.props["amount"] = self.answers[2]
-        if self.answers[3] != "" and self.answers[3] != "you":
-            sec.props["person"] = self.answers[3]
-            sec.props_type["person"] = "s"
+        new_transaction = Transaction(date=self.answers[1],
+                                      amount=self.answers[2],
+                                      currency=self.answers[4],
+                                      category=self.answers[5],
+                                      description=self.answers[0],
+                                      from_account=self.account.id,
+                                      to_account=None)
 
-        sec.props["currency"] = self.answers[4]
-        sec.props["category"] = self.answers[5]
-        sec.props_type["name"] = "s"
-        sec.props_type["date"] = "i"
-        sec.props_type["amount"] = "f"
-        sec.props_type["currency"] = "s"
-        sec.props_type["category"] = "s"
 
-        self.account.children.append(sec)
+        log("Adding transaction with from_account id " + str(self.account.id), component="SubNewTransaction")
+        data.transactions.append(new_transaction)
+        # sec = EbeSection()
+        # sec.type = "TRANSACTION"
+        # sec.props["name"] = self.answers[0]
+        # sec.props["date"] = self.answers[1]
+        # sec.props["amount"] = self.answers[2]
+        # if self.answers[3] != "" and self.answers[3] != "you":
+        #     sec.props["person"] = self.answers[3]
+        #     sec.props_type["person"] = "s"
+
+        # sec.props["currency"] = self.answers[4]
+        # sec.props["category"] = self.answers[5]
+        # sec.props_type["name"] = "s"
+        # sec.props_type["date"] = "i"
+        # sec.props_type["amount"] = "f"
+        # sec.props_type["currency"] = "s"
+        # sec.props_type["category"] = "s"
+
+        # self.account.children.append(sec)

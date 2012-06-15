@@ -1,31 +1,79 @@
----
 software:
-    version: [0,2,0]
-    file_format: [0,2]
+  file_format:
+  - 0
+  - 2
+  version:
+  - 0
+  - 2
+  - 0
 accounts:
-    - &acc001 !Account
-        name: Main account
-        currency: €
-        initial_balance: 1000.0
-    - &acc002 !Account
-        name: Another account
-        currency: €
-        initial_balance: 0.0
+- !Account
+  currency: "\u20AC"
+  id: 1
+  initial_balance: 1000.0
+  name: Main account
+- !Account
+  currency: "\u20AC"
+  id: 2
+  initial_balance: 0.0
+  name: Another account
+- !Account
+  currency: !!python/str "\u20AC"
+  id: 3
+  initial_balance: 0
+  name: New account
 transactions:
-    - !Transaction
-        date: [2012, 1, 3]
-        currency: €
-        amount: -100.0
-        category: Ebenezer testing
-        description: Simply testing transactions
-        from_account: *acc001
-        to_account: ~
-    - !Transaction
-        date: [2012, 1, 5]
-        currency: €
-        amount: -10.0
-        category: Another testing category
-        description: This is a second one
-        from_account: *acc001
-        to_account: *acc002
-...
+- !Transaction
+  amount: -100.0
+  category: Ebenezer testing
+  currency: "\u20AC"
+  date:
+  - 2012
+  - 1
+  - 3
+  description: Simply testing transactions
+  from_account: 1
+  to_account: null
+- !Transaction
+  amount: -10.0
+  category: Another testing category
+  currency: "\u20AC"
+  date:
+  - 2012
+  - 1
+  - 5
+  description: This is a second one
+  from_account: null
+  to_account: null
+- !Transaction
+  amount: 100000.0
+  category: General
+  currency: !!python/str "\u20AC"
+  date: '20120615'
+  description: Various
+  from_account: 1
+  to_account: null
+- !Transaction
+  amount: -200.0
+  category: General
+  currency: !!python/str "\u20AC"
+  date: '20120615'
+  description: Which id
+  from_account: 1
+  to_account: null
+- !Transaction
+  amount: 2154.0
+  category: General
+  currency: !!python/str "\u20AC"
+  date: '20120615'
+  description: Various
+  from_account: 3
+  to_account: null
+- !Transaction
+  amount: 1000000.0
+  category: General
+  currency: !!python/str "\u20AC"
+  date: '20120615'
+  description: Youpie
+  from_account: 2
+  to_account: null

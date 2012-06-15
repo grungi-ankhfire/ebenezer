@@ -6,17 +6,20 @@ import yaml
 
 accounts = []
 transactions = []
+active_file = None
+
 
 class Account(yaml.YAMLObject):
     yaml_tag = u'!Account'
-    def __init__(self, name, initial_balance, currency):
+    def __init__(self, name, initial_balance, currency, id):
         self.name = name
         self.initial_balance = initial_balance
         self.currency = currency
+        self.id = id
 
     def __repr__(self):
-        return "%s(name=%r, initial_balance=%r, currency=%r)" % (
-            self.__class__.__name__, self.name, self.initial_balance, self.currency)
+        return "%s(name=%r, initial_balance=%r, currency=%r, id=%r)" % (
+            self.__class__.__name__, self.name, self.initial_balance, self.currency, self.id)
 
 
 class Transaction(yaml.YAMLObject):

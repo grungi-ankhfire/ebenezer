@@ -3,6 +3,8 @@
 # See LICENSE file for licensing details
 from menu import Menu
 
+from .. import data
+
 class DebtsListMenu(Menu):
 
     def __init__(self, app, account):
@@ -25,12 +27,13 @@ class DebtsListMenu(Menu):
             return
         people = {}
         self.contents = []
-        for t in self.account.children:
-            if "person" in t.props.keys():
-                if t.props["person"] in people.keys():
-                    people[t.props["person"]]+=t.props["amount"]
-                else:
-                    people[t.props["person"]] = t.props["amount"]
+        for t in data.transactions:
+            pass
+            # if "person" in t.props.keys():
+            #     if t.props["person"] in people.keys():
+            #         people[t.props["person"]]+=t.amount
+            #     else:
+            #         people[t.props["person"]] = t.amount
 
         for p in people.keys():
             if people[p] < 0:

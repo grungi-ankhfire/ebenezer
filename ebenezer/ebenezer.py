@@ -7,6 +7,7 @@ from ui.menu_acc_list import AccountListMenu
 from ui.menu_acc_trans import AccountTransactionsMenu
 from ui.menu_debts import DebtsListMenu
 from log import *
+from io import *
 import data
 
 class Ebenezer:
@@ -20,8 +21,8 @@ class Ebenezer:
         self.menus = {}
         self.menus["mainmenu"] = MainMenu(self)
         self.menus["accountlist"] = AccountListMenu(self)
-        #self.menus["accounttrans"] = AccountTransactionsMenu(self, self.active_account)
-        #self.menus["debts"] = DebtsListMenu(self, self.active_account)
+        self.menus["accounttrans"] = AccountTransactionsMenu(self, self.active_account)
+        self.menus["debts"] = DebtsListMenu(self, self.active_account)
         self.running = False
         self.current_menu = "mainmenu"
 
@@ -36,12 +37,11 @@ class Ebenezer:
                     self.active_account = data.accounts[0]
             self.menus[self.current_menu].display()
         
-        # self.parser.replace_accounts(self.accounts)
 
-        # if self.parser.filename is None:
-        #     filename = raw_input("Save in which file ? [filename] to save or [Enter] to drop changes : ")
-        #     if filename != "":
-        #         self.parser.filename = filename
-            
-        #self.parser.write_file(self.parser.filename)
+        if data.active_file is None:
+            filename = raw_input("Save in which file ? [filename] to save or [Enter] to drop changes : ")
+            if filename != "":
+                data.active_file = filename
+        
+        save(data.active_file)
         return
