@@ -1,7 +1,10 @@
 # Copyright (c) 2012 Bastien Gorissen
 # Licensed under the MIT license
 # See LICENSE file for licensing details
+
 from menu import Menu
+
+from .. import data
 
 class MainMenu(Menu):
 
@@ -11,13 +14,13 @@ class MainMenu(Menu):
         self.header = ["Ebenezer personal accounting ver 0.1",\
                        "-----------[ Main menu ]------------"]
 
-        num_acc = self.app.parser.get_num_accounts()
+        num_acc = len(data.accounts)
         if self.app.active_account is None:
             active_account_name = "No account found!"
         else:
-            active_account_name = self.app.active_account.props["name"]
+            active_account_name = self.app.active_account.name
 
-        self.contents = ["Found " + str(num_acc) + " accounts",\
+        self.contents = ["Found " + str(num_acc) + " data.accounts",\
                          "Current active account : " + active_account_name,\
                          "[A]ccounts",\
                          "[T]ransactions",\
@@ -32,12 +35,12 @@ class MainMenu(Menu):
                         "q":[self.quit, None]}
 
     def update(self):
-        num_acc = self.app.parser.get_num_accounts()
+        num_acc = len(data.accounts)
         if self.app.active_account is None:
             active_account_name = "No account found!"
         else:
-            active_account_name = self.app.active_account.props["name"]
-        self.contents[0] = "Found " + str(num_acc) + " accounts"
+            active_account_name = self.app.active_account.name
+        self.contents[0] = "Found " + str(num_acc) + " data.accounts"
         self.contents[1] = "Current active account : " + active_account_name
 
     def quit(self, data = None):

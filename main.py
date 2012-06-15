@@ -11,6 +11,7 @@ from ebenezer.parser import EbeParser
 from ebenezer.ebenezer import Ebenezer
 from ebenezer.io import *
 from ebenezer.log import *
+from ebenezer import data
 
 def parse_options(argv):
     if argv is None:
@@ -27,30 +28,29 @@ def parse_options(argv):
 
 
 def processFile(files):
-    parser = None
     for item in files:
         load(item)
-        parser = EbeParser(item)
-        if parser.successful:
-            parser.write_file(parser.filename+".backup")
-            break
-    if parser is None or not parser.successful:
-        parser = EbeParser(None)
+        save(item + ".backup")
+    # TODO Add success checks in io, and error handling
 
-    return parser
+
 
 #------------------------------------------------------------------------------
 def main(argv=None):
 
+    global accounts
     files = parse_options(argv)
 
     log_init()
 
-    log("Testing log", component="Main")
+    log("Starting Ebenezer version " + getVersionString(), component="Main")
+    log("Using file format version " + getFileFormatVersionString(), component="Main")
+    
+    processFile(files)
 
-    parser = processFile(files)
+    print data.accounts
 
-    app = Ebenezer(parser)
+    app = Ebenezer()
     return app.run()
 
 if __name__ == "__main__":

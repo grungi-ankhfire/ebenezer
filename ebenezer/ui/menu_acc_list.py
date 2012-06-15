@@ -5,9 +5,11 @@ from menu import Menu
 from sub_account import SubNewAccount
 from sub_del_account import SubDelAccount
 
+from .. import data
+
 class AccountListMenu(Menu):
 
-    def __init__(self, app, accounts):
+    def __init__(self, app):
         Menu.__init__(self, app)
         self.header = ["Ebenezer personal accounting ver 0.1",\
                        "---------[ Accounts list ]----------"]
@@ -15,19 +17,19 @@ class AccountListMenu(Menu):
         self.contents = []
         index = 0
         self.footer = []
-        for a in accounts:
+        for a in data.accounts:
             index += 1
             string = ""
-            if a.props["name"] == self.app.active_account.props["name"]:
+            if a.name == self.app.active_account.name:
                 string += "* "
             else:
                 string += "  "
 
-            string += str(index) + " " + a.props["name"]
+            string += str(index) + " " + a.name
             self.contents.append(string)
             self.answers[str(index)] = [self.set_active, index]
 
-        if len(accounts) > 1:
+        if len(data.accounts) > 1:
             self.footer.append("[1] to [" + str(index) + "] to set active account")
             
         self.footer.append("[N]ew account")
@@ -41,8 +43,8 @@ class AccountListMenu(Menu):
         self.answers['n'] = [self.display_prompt, "newaccount"]
         self.answers['d'] = [self.display_prompt, "delaccount"]
 
-        self.submenus = {"newaccount":SubNewAccount(self.app.accounts),\
-                         "delaccount":SubDelAccount(self.app.accounts)}
+        self.submenus = {"newaccount":SubNewAccount(data.accounts),\
+                         "delaccount":SubDelAccount(data.accounts)}
 
     def display_prompt(self, prompt):
         self.submenus[prompt].display()
@@ -50,20 +52,20 @@ class AccountListMenu(Menu):
     def update(self):
         index = 0
         self.contents = []
-        for a in self.app.accounts:
+        for a in data.accounts:
             index += 1
             string = ""
-            if a.props["name"] == self.app.active_account.props["name"]:
+            if a.name == self.app.active_account.name:
                 string += "* "
             else:
                 string += "  "
 
-            string += str(index) + " " + a.props["name"]
+            string += str(index) + " " + a.name
             self.contents.append(string)
             self.answers[str(index)] = [self.set_active, index]
 
 
-    def set_active(self, data):
-        self.app.active_account = self.app.accounts[data-1]
+    def set_active(self, index):
+        self.app.active_account = data.accounts[index-1]
 
 
