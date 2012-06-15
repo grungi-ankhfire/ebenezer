@@ -28,16 +28,15 @@ class DebtsListMenu(Menu):
         people = {}
         self.contents = []
         for t in data.transactions:
-            pass
-            # if "person" in t.props.keys():
-            #     if t.props["person"] in people.keys():
-            #         people[t.props["person"]]+=t.amount
-            #     else:
-            #         people[t.props["person"]] = t.amount
+            if t.person is not None:
+                if t.person in people.keys():
+                    people[t.person]+=t.amount
+                else:
+                    people[t.person] = t.amount
 
         for p in people.keys():
             if people[p] < 0:
-                self.contents.append(p + " owes you " + str(-people[p]) + self.account.props["currency"]+ ".")
+                self.contents.append(p + " owes you " + str(-people[p]) + self.account.currency+ ".")
             elif people[p] > 0:
-                self.contents.append("You owe " + p + " " + str(people[p]) + self.account.props["currency"]+ ".")
+                self.contents.append("You owe " + p + " " + str(people[p]) + self.account.currency+ ".")
             

@@ -56,6 +56,6 @@ class AccountTransactionsMenu(Menu):
 
             balance += t.amount
             self.contents.append(string)
-            #self.contents.append(str(index) + "  " + str(t.props["amount"])  + t.props["currency"] + " " + str(t.props["date"]) + " " + t.props['name'])
+            
         self.contents.append("-----------------------------------------")
         self.contents.append("Account balance : %+#15.2f%s" % (balance, self.account.currency))

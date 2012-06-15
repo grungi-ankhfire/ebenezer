@@ -47,13 +47,19 @@ class SubNewTransaction():
 
             self.answers.append(ans)
 
+        if self.answers[3] != "" and self.answers[3] != "you":
+            person = self.answers[3]
+        else:
+            person = None
+
         new_transaction = Transaction(date=self.answers[1],
                                       amount=self.answers[2],
                                       currency=self.answers[4],
                                       category=self.answers[5],
                                       description=self.answers[0],
                                       from_account=self.account.id,
-                                      to_account=None)
+                                      to_account=None,
+                                      person=person)
 
 
         log("Adding transaction with from_account id " + str(self.account.id), component="SubNewTransaction")

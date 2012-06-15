@@ -17,11 +17,6 @@ accounts:
   id: 2
   initial_balance: 0.0
   name: Another account
-- !Account
-  currency: !!python/str "\u20AC"
-  id: 3
-  initial_balance: 0
-  name: New account
 transactions:
 - !Transaction
   amount: -100.0
@@ -33,47 +28,32 @@ transactions:
   - 3
   description: Simply testing transactions
   from_account: 1
+  person: null
   to_account: null
 - !Transaction
-  amount: -10.0
-  category: Another testing category
-  currency: "\u20AC"
-  date:
-  - 2012
-  - 1
-  - 5
-  description: This is a second one
-  from_account: null
-  to_account: null
-- !Transaction
-  amount: 100000.0
+  amount: -150.0
   category: General
   currency: !!python/str "\u20AC"
   date: '20120615'
   description: Various
   from_account: 1
+  person: null
   to_account: null
 - !Transaction
-  amount: -200.0
-  category: General
-  currency: !!python/str "\u20AC"
-  date: '20120615'
-  description: Which id
-  from_account: 1
-  to_account: null
-- !Transaction
-  amount: 2154.0
+  amount: -150.0
   category: General
   currency: !!python/str "\u20AC"
   date: '20120615'
   description: Various
-  from_account: 3
+  from_account: 1
+  person: Joan
   to_account: null
 - !Transaction
-  amount: 1000000.0
+  amount: 250.0
   category: General
   currency: !!python/str "\u20AC"
   date: '20120615'
-  description: Youpie
+  description: Debts
   from_account: 2
+  person: Joan
   to_account: null

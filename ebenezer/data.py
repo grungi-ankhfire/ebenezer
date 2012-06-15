@@ -24,7 +24,7 @@ class Account(yaml.YAMLObject):
 
 class Transaction(yaml.YAMLObject):
     yaml_tag = u'!Transaction'
-    def __init__(self, date, amount, currency, category=None, description=None, from_account=None, to_account=None):
+    def __init__(self, date, amount, currency, category=None, description=None, from_account=None, to_account=None, person=None):
         self.date = date
         self.amount = amount
         self.currency = currency
@@ -32,8 +32,9 @@ class Transaction(yaml.YAMLObject):
         self.description = description
         self.from_account = from_account
         self.to_account = to_account
+        self.person = person
 
     def __repr__(self):
-        return "%s(date=%r, amount=%r, currency=%r, category=%r, description=%r, from_account=%r, to_account=%r)" % (
+        return "%s(date=%r, amount=%r, currency=%r, category=%r, description=%r, from_account=%r, to_account=%r, person=%r)" % (
             self.__class__.__name__, self.date, self.amount, self.currency, self.category, self.description, \
-            self.from_account, self.to_account)
+            self.from_account, self.to_account, self.person)
