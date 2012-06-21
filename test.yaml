@@ -8,12 +8,12 @@ software:
   - 0
 accounts:
 - !Account
-  currency: "\u20AC"
+  currency: EUR
   id: 1
   initial_balance: 1000.0
   name: Main account
 - !Account
-  currency: "\u20AC"
+  currency: EUR
   id: 2
   initial_balance: 0.0
   name: Another account
@@ -21,7 +21,7 @@ transactions:
 - !Transaction
   amount: -100.0
   category: Ebenezer testing
-  currency: "\u20AC"
+  currency: EUR
   date: '20120103'
   description: Simply testing transactions
   from_account: 1
@@ -30,7 +30,7 @@ transactions:
 - !Transaction
   amount: -150.0
   category: General
-  currency: !!python/str "\u20AC"
+  currency: EUR
   date: '20120615'
   description: Various
   from_account: 1
@@ -39,7 +39,7 @@ transactions:
 - !Transaction
   amount: -150.0
   category: General
-  currency: !!python/str "\u20AC"
+  currency: EUR
   date: '20120615'
   description: Various
   from_account: 1
@@ -48,7 +48,7 @@ transactions:
 - !Transaction
   amount: 250.0
   category: General
-  currency: !!python/str "\u20AC"
+  currency: EUR
   date: '20120615'
   description: Debts
   from_account: 2

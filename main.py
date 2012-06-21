@@ -5,6 +5,7 @@
 import sys
 import os
 import getopt
+import logging
 
 from ebenezer.config import *
 from ebenezer.parser import EbeParser
@@ -42,11 +43,11 @@ def main(argv=None):
     global accounts
     files = parse_options(argv)
 
-    log_init()
+    log_init("ebenezer.log")
 
     log("Starting Ebenezer version " + getVersionString(), component="Main")
     log("Using file format version " + getFileFormatVersionString(), component="Main")
-    
+
     processFile(files)
 
     print data.accounts

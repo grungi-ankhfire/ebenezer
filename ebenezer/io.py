@@ -9,7 +9,7 @@ from data import Account, Transaction
 
 from log import *
 from config import *
-
+from currencies import *
 
 
 def logio(message, type="INFO"):

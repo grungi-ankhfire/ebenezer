@@ -50,7 +50,7 @@ class AccountTransactionsMenu(Menu):
         balance = self.account.initial_balance
         for t in sorted(self.transactions, key=lambda transaction: transaction.date[0]):
             index += 1
-            string = "%0i %+#15.2f%s   %-#8s   %-#30s %s" % \
+            string = "%0i %+#15.2f %s   %-#8s   %-#30s %s" % \
                      (index, t.amount, t.currency, t.date, t.description, t.category)
 
 
@@ -58,4 +58,4 @@ class AccountTransactionsMenu(Menu):
             self.contents.append(string)
             
         self.contents.append("-----------------------------------------")
-        self.contents.append("Account balance : %+#15.2f%s" % (balance, self.account.currency))
+        self.contents.append("Account balance : %+#15.2f %s" % (balance, self.account.currency))
