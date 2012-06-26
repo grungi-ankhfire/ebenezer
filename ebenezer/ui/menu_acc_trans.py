@@ -45,16 +45,22 @@ class AccountTransactionsMenu(Menu):
         for c in data.transactions:
             if c.from_account == self.account.id:
                 self.transactions.append(c)
+            if c.to_account == self.account.id:
+                self.transactions.append(c)
 
         index = 0
         balance = self.account.initial_balance
         for t in sorted(self.transactions, key=lambda transaction: transaction.date[0]):
             index += 1
-            string = "%0i %+#15.2f %s   %-#8s   %-#30s %s" % \
-                     (index, t.amount, t.currency, t.date, t.description, t.category)
+            if t.from_account == self.account.id:
+                string = "%0i %+#15.2f %s   %-#8s   %-#30s %s" % \
+                        (index, t.amount, t.currency, t.date, t.description, t.category)
+                balance += t.amount
+            else:
+                string = "%0i %+#15.2f %s   %-#8s   %-#30s %s" % \
+                        (index, -t.amount, t.currency, t.date, t.description, t.category)               
+                balance -= t.amount
 
-
-            balance += t.amount
             self.contents.append(string)
             
         self.contents.append("-----------------------------------------")
