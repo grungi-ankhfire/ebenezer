@@ -1,18 +1,33 @@
-import socket
-import threading
+from twisted.internet import protocol, reactor
+from twisted.protocols import basic
 
-class EbenezerServer:
-
+class EbenezerProtocol(basic.LineReceiver):
+    
     def __init__(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.bind((socket.gethostname(), 42512))
-        self.socket.listen(5)
+        self.state = "GETNAME"
+        self.user = ""
 
-    def run(self):
-        while 1:
-            (clientsocket, address) = self.socket.accept()
-            print "Connection opened with ", address
-            print clientsocket.recv(100)
-            clientsocket.send( "Green-eyed monster.")
-            clientsocket.close()
+    def lineReceived(self, line):
+        if self.state == "GETNAME":
+            self.user= line
+            self.transport.write(self.factory.getUser(self.user)+"\r\n")
+            self.state = "GOTNAME"
+        else:
+            self.transport.write("Exiting"+"\r\n")
+            self.transport.loseConnection()
 
+class EbenezerFactory(protocol.ServerFactory):
+
+    protocol = EbenezerProtocol
+
+    def __init__(self, **kwargs):
+        self.connected_users = ["alice", "bob"]
+
+    def getUser(self, user):
+        if user in self.connected_users:
+            return user
+        else:
+            return "No such user" 
+
+reactor.listenTCP(42512, EbenezerFactory())
+reactor.run()
