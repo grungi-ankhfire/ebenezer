@@ -4,6 +4,7 @@
 from menu import Menu
 from sub_transaction import SubNewTransaction
 from sub_del_transaction import SubDelTransaction
+from sub_transfer import SubTransfer
 from .. import data
 
 
@@ -21,15 +22,18 @@ class AccountTransactionsMenu(Menu):
 
         self.footer = ["[N]ew transaction",\
                        "[D]elete transaction",\
+                       "[T]ransfer between accounts",\
                        "[G]o back"]
 
         self.prompt = "What do you want to do ?"
         self.answers = {"n":[self.display_prompt, "newtransaction"],\
                         "d":[self.display_prompt, "deltransaction"],\
+                        "t":[self.display_prompt, "newtransfer"],\
                         "g":[self.change_menu, "mainmenu"]}
 
         self.submenus = {"newtransaction":SubNewTransaction(app),\
-                         "deltransaction":SubDelTransaction(self)}
+                         "deltransaction":SubDelTransaction(self),\
+                         "newtransfer":SubTransfer(app)}
 
 
     def display_prompt(self, prompt):
