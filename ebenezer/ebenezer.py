@@ -42,5 +42,5 @@ class Ebenezer:
             filename = raw_input("Save in which file ? [filename] to save or [Enter] to drop changes : ")
             if filename != "":
                 data.active_file = filename
-                save(data.active_file)
+        save(data.active_file)
         return
