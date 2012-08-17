@@ -31,7 +31,7 @@ class Ebenezer:
         self.running = True
         while self.running:
             if self.active_account not in data.accounts:
-                if len(accounts) == 0:
+                if len(data.accounts) == 0:
                     self.active_account = None
                 else:
                     self.active_account = data.accounts[0]
@@ -42,6 +42,5 @@ class Ebenezer:
             filename = raw_input("Save in which file ? [filename] to save or [Enter] to drop changes : ")
             if filename != "":
                 data.active_file = filename
-        
-        save(data.active_file)
+                save(data.active_file)
         return
